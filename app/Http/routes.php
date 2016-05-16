@@ -33,20 +33,15 @@ Route::get("torneo/{id}", function($id)
 
 
 
-
-Route::group(array('prefix' => 'api'), function() {
-
-    // since we will be using this just for CRUD, we won't need create and edit
-    // Angular will handle both of those forms
-    // this ensures that a user can't access api/create or api/edit when there's nothing there}
-
-    // index -> GET
-    // store -> POST
-    // destroy -> 
-    Route::resource('comments', 'VideoController', array('only' => array('index', 'store', 'destroy')));
-  
-
-  	Route::post("login",'LoginController@index');
+Route::get("torneo/predictor/{id}", function($id)
+{
+	//return $id;
+	return view("predictor")->with("id",$id);
 });
+
+
+Route::post("torneo/api/proximosPartidos","PartidoController@proximosPartidos");
+Route::post("api/login",'LoginController@index');
+
 
 
